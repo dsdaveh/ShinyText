@@ -1,4 +1,3 @@
-library(pryr)
 library(slam)
 
 log.df <- data.frame(log=character(), time.inc=numeric(), time.cum=numeric() , time.stamp=character() )
@@ -145,7 +144,7 @@ squashPTM <- function (p, n=1) {
     squash
 }
 
-scoreText <- function (ptm, txt, ptm.squashed={ object_size(ptm) < 100e6 }) {
+scoreText <- function (ptm, txt, ptm.squashed={ utils::object.size(ptm) < 100e6 }) {
     #handle string input (convert to corpus)
     if( class(txt)[1] == "character" ) {
         txt.corp <- Corpus(VectorSource(txt), readerControl = list(language="en"))
@@ -175,7 +174,7 @@ scoreText <- function (ptm, txt, ptm.squashed={ object_size(ptm) < 100e6 }) {
     scores
 }
 
-plotPhraseScore <- function (ptm, phrase, ptm.squashed={ object_size(ptm) < 100e6 }) {
+plotPhraseScore <- function (ptm, phrase, ptm.squashed={ utils::object.size(ptm) < 100e6 }) {
     par.orig <- par(mfrow=c(2,1), mar=c(2,2,2,2), las=1)
     
     score <- scoreText(ptm, phrase, ptm.squashed=ptm.squashed) [[1]]

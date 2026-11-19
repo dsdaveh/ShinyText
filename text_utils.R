@@ -1,6 +1,5 @@
 library(tm)
 library(stringr)
-library(RWeka)
 
 prepCorpus <- function( corpus ) {
     corpus <- tm_map(corpus, content_transformer(function(x) gsub("[^[:print:]]", " ", x))) # remove unprintable characters
